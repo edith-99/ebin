@@ -1,0 +1,99 @@
+---
+import Logo from './Logo.astro';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-charcoal-900 text-charcoal-300 border-t border-charcoal-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+      
+      <!-- Brand & Mission Column -->
+      <div class="lg:col-span-2 space-y-4">
+        <Logo isDark={true} />
+        <p class="text-charcoal-300 text-sm leading-relaxed max-w-sm mt-3">
+          ebin is Bengaluru’s dedicated e-waste recycling platform. We bring convenient doorstep pickups and certified safe recycling to households, RWAs, and offices across the city.
+        </p>
+        <div class="pt-2">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-charcoal-800 border border-charcoal-700 text-xs text-eco-400 font-medium">
+            <span class="w-2 h-2 rounded-full bg-eco-500 animate-pulse"></span>
+            Serving Bengaluru Urban Only (BBMP Zones)
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Navigation -->
+      <div>
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Recycle</h3>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href="/pickup/" class="hover:text-eco-400 transition-colors flex items-center gap-1.5">
+              <span>Schedule Pickup</span>
+              <span class="text-[10px] bg-eco-900/60 text-eco-300 border border-eco-700 px-1.5 py-0.5 rounded font-bold">Fast</span>
+            </a>
+          </li>
+          <li>
+            <a href="/how-it-works/" class="hover:text-eco-400 transition-colors">How It Works</a>
+          </li>
+          <li>
+            <a href="/price-guide/" class="hover:text-eco-400 transition-colors">Indicative Price Guide</a>
+          </li>
+          <li>
+            <a href="/locations/" class="hover:text-eco-400 transition-colors">Drop-off Points</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Organization -->
+      <div>
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Company</h3>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href="/about/" class="hover:text-eco-400 transition-colors">About ebin</a>
+          </li>
+          <li>
+            <a href="/contact/" class="hover:text-eco-400 transition-colors">Contact Operations</a>
+          </li>
+          <li>
+            <a href="/privacy/" class="hover:text-eco-400 transition-colors">Privacy Policy</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Service Guarantees -->
+      <div>
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Our Commitment</h3>
+        <ul class="space-y-2.5 text-xs text-charcoal-400">
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-eco-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <span>100% Zero-Landfill Pledge</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-eco-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <span>KSPCB/CPCB Compliant Facilities</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-eco-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Secure Data Destruction Guidance</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-12 pt-8 border-t border-charcoal-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-charcoal-400 gap-4">
+      <p>&copy; {currentYear} ebin. All rights reserved. Bengaluru, Karnataka, India.</p>
+      <div class="flex items-center space-x-6">
+        <a href="/privacy/" class="hover:text-eco-400 transition-colors">Privacy Policy</a>
+        <a href="/contact/" class="hover:text-eco-400 transition-colors">Support & Forms</a>
+        <span>Bengaluru Only</span>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,214 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Contact Us"
+  description="Contact the ebin Bengaluru team for bulk e-waste recycling, corporate IT asset disposition, apartment drives, or pickup questions."
+>
+  
+  <!-- Hero Section -->
+  <section class="py-20 bg-charcoal-900 text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto space-y-4">
+      <span class="text-xs font-bold uppercase tracking-widest text-eco-400 bg-charcoal-800 px-3.5 py-1.5 rounded-full border border-charcoal-700">
+        Get In Touch
+      </span>
+      <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white">
+        We're here to help Bengaluru recycle.
+      </h1>
+      <p class="text-base sm:text-lg text-charcoal-300 leading-relaxed">
+        Have questions about scheduling a pickup, organizing an apartment society e-waste drive, or bulk corporate IT disposal? Send us a message below.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Form & Operational Info Grid -->
+  <section class="py-24 bg-charcoal-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Operational Information Card -->
+        <div class="lg:col-span-5 space-y-8">
+          <div class="bg-white rounded-3xl p-8 shadow-sm border border-charcoal-200 space-y-6">
+            <h2 class="text-2xl font-black text-charcoal-900 tracking-tight">
+              Operational Hub
+            </h2>
+            <p class="text-xs text-charcoal-600 leading-relaxed">
+              We operate across all zones of Bruhat Bengaluru Mahanagara Palike (BBMP). All pickup scheduling and support inquiries are managed directly through our dispatch center.
+            </p>
+
+            <div class="space-y-4 text-xs border-t border-charcoal-100 pt-6">
+              <div class="flex items-start gap-3">
+                <span class="w-8 h-8 rounded-lg bg-eco-50 text-eco-600 flex items-center justify-center font-bold text-sm flex-shrink-0">
+                  🕒
+                </span>
+                <div>
+                  <p class="font-bold text-charcoal-900">Working Hours</p>
+                  <p class="text-charcoal-500">Monday – Saturday: 9:00 AM – 6:30 PM</p>
+                  <p class="text-charcoal-400 text-[11px]">Closed on major public holidays</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="w-8 h-8 rounded-lg bg-eco-50 text-eco-600 flex items-center justify-center font-bold text-sm flex-shrink-0">
+                  📍
+                </span>
+                <div>
+                  <p class="font-bold text-charcoal-900">Service Coverage</p>
+                  <p class="text-charcoal-500">Bengaluru Urban District (All BBMP Zones)</p>
+                  <p class="text-charcoal-400 text-[11px]">South, East, West, North, Mahadevapura, Bommanahalli, Yelahanka, Dasarahalli</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="w-8 h-8 rounded-lg bg-eco-50 text-eco-600 flex items-center justify-center font-bold text-sm flex-shrink-0">
+                  ⚡
+                </span>
+                <div>
+                  <p class="font-bold text-charcoal-900">Response Commitment</p>
+                  <p class="text-charcoal-500">Direct response within 24 business hours</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notice on immediate bookings -->
+            <div class="p-4 rounded-xl bg-charcoal-900 text-white text-xs space-y-2">
+              <p class="font-bold text-eco-400">Want to book a doorstep pickup directly?</p>
+              <p class="text-charcoal-300">You don’t need to submit a general inquiry. Jump straight to our pickup booking form.</p>
+              <a href="/pickup/" class="inline-block mt-1 font-bold text-white underline hover:text-eco-400">
+                Go to Pickup Scheduler &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Netlify Inquiry Form -->
+        <div class="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-charcoal-100">
+          <h2 class="text-2xl font-black text-charcoal-900 tracking-tight mb-2">
+            Send Us a Message
+          </h2>
+          <p class="text-xs text-charcoal-500 mb-8">
+            Please fill out the form below. Your message will be securely delivered to our management team.
+          </p>
+
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            action="/contact/success/"
+            class="space-y-6"
+          >
+            <!-- Netlify Form Hidden Identifier -->
+            <input type="hidden" name="form-name" value="contact" />
+
+            <!-- Honeypot Field -->
+            <p class="hidden">
+              <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="contact-name" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                  Full Name <span class="text-eco-600">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  required
+                  placeholder="e.g. Ananya Rao"
+                  class="w-full px-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm"
+                />
+              </div>
+
+              <div>
+                <label for="contact-phone" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                  Phone Number <span class="text-eco-600">*</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-sm font-semibold text-charcoal-400">
+                    +91
+                  </span>
+                  <input
+                    type="tel"
+                    id="contact-phone"
+                    name="phone"
+                    required
+                    pattern="[0-9]{10}"
+                    placeholder="9876543210"
+                    class="w-full pl-14 pr-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label for="contact-email" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                Your Email Address <span class="text-eco-600">*</span>
+              </label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                required
+                placeholder="name@example.com"
+                class="w-full px-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm"
+              />
+            </div>
+
+            <div>
+              <label for="contact-subject" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                Inquiry Topic <span class="text-eco-600">*</span>
+              </label>
+              <select
+                id="contact-subject"
+                name="subject"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm bg-white"
+              >
+                <option value="" disabled selected>Select an inquiry topic</option>
+                <option value="General Question">General Recycling Question</option>
+                <option value="Apartment Society / RWA Drive">Organize Apartment / RWA E-Waste Drive</option>
+                <option value="Corporate / Bulk Disposal">Bulk Office IT Asset Disposal (ITAD)</option>
+                <option value="Drop-off Point Inquiry">Partner / Retail Drop-off Inquiry</option>
+                <option value="Feedback or Other">Feedback or Other Query</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="contact-message" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                Message <span class="text-eco-600">*</span>
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="4"
+                required
+                placeholder="Please share details of your request or inquiry..."
+                class="w-full px-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm"
+              ></textarea>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                class="w-full py-4 px-6 rounded-full text-base font-black text-white bg-eco-600 hover:bg-eco-700 transition-all duration-200 transform hover:scale-[1.01] shadow-lg shadow-eco-600/20"
+              >
+                Send Message
+              </button>
+            </div>
+            
+            <p class="text-center text-xs text-charcoal-400">
+              We respect your privacy. Inquiries are stored securely and never shared with advertisers.
+            </p>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

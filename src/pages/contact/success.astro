@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Message Sent"
+  description="Your message has been delivered to the ebin management team."
+>
+  <div class="bg-charcoal-50 min-h-[75vh] flex items-center py-20">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <div class="bg-white rounded-3xl p-10 sm:p-14 shadow-xl border border-charcoal-100 space-y-6">
+        
+        <div class="w-20 h-20 rounded-full bg-eco-100 text-eco-600 flex items-center justify-center mx-auto text-3xl">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+
+        <span class="inline-block text-xs font-bold uppercase tracking-wider text-eco-600 bg-eco-50 px-3 py-1 rounded-full">
+          Message Received
+        </span>
+
+        <h1 class="text-3xl sm:text-4xl font-black text-charcoal-900 tracking-tight">
+          Thank you for reaching out!
+        </h1>
+
+        <p class="text-charcoal-600 text-sm leading-relaxed">
+          Your inquiry has been successfully sent to our operations team. We typically respond within 24 business hours.
+        </p>
+
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="/"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-bold text-white bg-charcoal-900 hover:bg-charcoal-800 transition-colors"
+          >
+            Return to Homepage
+          </a>
+          <a
+            href="/pickup/"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-bold text-eco-700 bg-eco-50 hover:bg-eco-100 transition-colors"
+          >
+            Schedule a Pickup
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</Layout>

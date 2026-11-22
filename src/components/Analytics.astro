@@ -1,0 +1,33 @@
+---
+/**
+ * GOOGLE ANALYTICS 4 CONFIGURATION
+ * 
+ * Instructions for non-technical owner:
+ * 1. When you sign up for Google Analytics (analytics.google.com), you'll get a Measurement ID like G-XXXXXXXXXX.
+ * 2. You can either:
+ *    - Option A (Easiest): Replace "G-XXXXXXXXXX" below with your actual ID.
+ *    - Option B (Netlify): Go to Netlify Dashboard -> Site Configuration -> Environment Variables,
+ *      and add PUBLIC_GA_ID = G-XXXXXXXXXX.
+ */
+const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_ID || "G-XXXXXXXXXX";
+const isConfigured = GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== "G-XXXXXXXXXX";
+---
+
+{isConfigured ? (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    </script>
+  </>
+) : (
+  <!-- 
+    [EBIN ANALYTICS NOTICE]
+    Google Analytics is currently dormant.
+    Measurement ID is set to: G-XXXXXXXXXX
+    To activate tracking, update src/components/Analytics.astro or set PUBLIC_GA_ID in Netlify.
+  -->
+)}

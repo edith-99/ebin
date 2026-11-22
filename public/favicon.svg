@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <rect width="48" height="48" rx="12" fill="#12161f"/>
+  <!-- Recycling bin / circular tech eco symbol -->
+  <path d="M24 10C16.268 10 10 16.268 10 24C10 27.866 11.567 31.366 14.1 33.9L17.5 30.5C15.9 28.9 15 26.6 15 24C15 19.03 19.03 15 24 15V19L30 13L24 7V10Z" fill="#16a34a"/>
+  <path d="M24 38C31.732 38 38 31.732 38 24C38 20.134 36.433 16.634 33.9 14.1L30.5 17.5C32.1 19.1 33 21.4 33 24C33 28.97 28.97 33 24 33V29L18 35L24 41V38Z" fill="#22c55e"/>
+  <!-- Center e-chip dot -->
+  <circle cx="24" cy="24" r="3.5" fill="#f0fdf4"/>
+</svg>

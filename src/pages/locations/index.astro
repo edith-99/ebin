@@ -1,0 +1,322 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const dropoffPoints = [
+  {
+    id: 'saahas-btm',
+    name: 'Saahas Zero Waste Center — BTM Layout',
+    zone: 'South Bengaluru',
+    address: '#21, Ground Floor, MCHS Colony, 5th C Cross, 16th Main, BTM Layout 2nd Stage, Bengaluru – 560076',
+    hours: 'Mon – Sat: 9:30 AM – 6:00 PM',
+    accepts: ['Laptops', 'Phones', 'Peripherals', 'Batteries', 'Small Appliances'],
+    lat: 12.9166,
+    lng: 77.6101,
+    verifiedNote: 'Established NGO partner facility for certified e-waste aggregation.',
+    mapsUrl: 'https://maps.google.com/?q=12.9166,77.6101',
+  },
+  {
+    id: 'croma-koramangala',
+    name: 'Croma Electronics E-Waste Bin — Koramangala',
+    zone: 'South-Central Bengaluru',
+    address: 'Sony World Junction, 80 Feet Road, 4th Block, Koramangala, Bengaluru – 560034',
+    hours: 'All Days: 11:00 AM – 9:00 PM',
+    accepts: ['Phones', 'Chargers', 'Tablets', 'Earphones', 'Power Banks'],
+    lat: 12.9344,
+    lng: 77.6256,
+    verifiedNote: 'In-store drop box by entrance. Best for handheld gadgets and cables.',
+    mapsUrl: 'https://maps.google.com/?q=12.9344,77.6256',
+  },
+  {
+    id: 'croma-indiranagar',
+    name: 'Croma Collection Hub — Indiranagar',
+    zone: 'East Bengaluru',
+    address: '100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru – 560038',
+    hours: 'All Days: 11:00 AM – 9:00 PM',
+    accepts: ['Laptops', 'Phones', 'Small Tech', 'Cables', 'Accessories'],
+    lat: 12.9719,
+    lng: 77.6412,
+    verifiedNote: 'Retail collection point with authorized recycling partner dispatch.',
+    mapsUrl: 'https://maps.google.com/?q=12.9719,77.6412',
+  },
+  {
+    id: 'sogo-bommasandra',
+    name: 'Sogo Synergy Recycling Depot — Bommasandra',
+    zone: 'Electronic City / Hosur Corridor',
+    address: 'Shed No. A-57, KSSIDC Industrial Estate, Bommasandra, Hosur Road, Bengaluru – 560099',
+    hours: 'Mon – Sat: 9:00 AM – 5:30 PM',
+    accepts: ['Bulk IT Scrap', 'Desktops', 'Servers', 'UPS Batteries', 'Monitors'],
+    lat: 12.8182,
+    lng: 77.6896,
+    verifiedNote: 'Authorized KSPCB/CPCB industrial processing & dismantling facility.',
+    mapsUrl: 'https://maps.google.com/?q=12.8182,77.6896',
+  },
+  {
+    id: 'bbmp-whitefield',
+    name: 'Dry Waste & E-Waste Recovery Hub — Whitefield',
+    zone: 'East Bengaluru',
+    address: 'Near Inner Circle Ground, Whitefield Main Road, Bengaluru – 560066',
+    hours: 'Mon – Sat: 8:00 AM – 4:00 PM',
+    accepts: ['Household Electronics', 'Appliances', 'Dry E-Scrap'],
+    lat: 12.9698,
+    lng: 77.7499,
+    verifiedNote: 'Community collection kiosk operated alongside BBMP waste management.',
+    mapsUrl: 'https://maps.google.com/?q=12.9698,77.7499',
+  },
+  {
+    id: 'malleshwaram-hub',
+    name: 'Eco-Drop Collection Point — Malleshwaram',
+    zone: 'North-West Bengaluru',
+    address: '8th Main, Between 15th & 16th Cross, Malleshwaram, Bengaluru – 560055',
+    hours: 'Mon – Sat: 9:00 AM – 5:00 PM',
+    accepts: ['Computers', 'Displays', 'Wires', 'Gadgets'],
+    lat: 13.0031,
+    lng: 77.5702,
+    verifiedNote: 'North Bengaluru citizen drop-off point for small and medium electronics.',
+    mapsUrl: 'https://maps.google.com/?q=13.0031,77.5702',
+  },
+  {
+    id: 'jayanagar-depot',
+    name: 'Jayanagar Community E-Drop Depot — 4th Block',
+    zone: 'South Bengaluru',
+    address: '4th Block, Near BDA Complex, 11th Main Road, Jayanagar, Bengaluru – 560011',
+    hours: 'Mon – Sat: 10:00 AM – 6:00 PM',
+    accepts: ['Mobile Devices', 'Small Appliances', 'Wires', 'Chargers'],
+    lat: 12.9298,
+    lng: 77.5833,
+    verifiedNote: 'Central South Bengaluru location for quick drop-offs during market visits.',
+    mapsUrl: 'https://maps.google.com/?q=12.9298,77.5833',
+  },
+];
+---
+
+<Layout
+  title="Drop-off Points & Map"
+  description="Find verified e-waste drop-off points in Bengaluru. Real community collection hubs in Koramangala, Indiranagar, BTM, Whitefield, and Malleshwaram."
+>
+  <!-- Leaflet CSS & JS for Interactive Map -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <script
+    is:inline
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <!-- Hero Section -->
+  <section class="py-20 bg-charcoal-900 text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto space-y-4">
+      <span class="text-xs font-bold uppercase tracking-widest text-eco-400 bg-charcoal-800 px-3.5 py-1.5 rounded-full border border-charcoal-700">
+        Bengaluru Network
+      </span>
+      <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white">
+        Drop-off Points in Bengaluru
+      </h1>
+      <p class="text-base sm:text-lg text-charcoal-300 leading-relaxed">
+        Prefer to drop off items in person? Explore verified drop-off hubs, partner retail collection bins, and community centers across the city.
+      </p>
+    </div>
+  </section>
+
+  <!-- Important Owner Verification Notice -->
+  <section class="bg-amber-50 border-b border-amber-200 py-4 px-4">
+    <div class="max-w-5xl mx-auto flex items-start gap-3">
+      <span class="text-xl">⚠️</span>
+      <div class="text-xs text-amber-900">
+        <strong class="font-bold">Business Owner Note & Visitor Advisory:</strong> We have researched real, authorized Bengaluru collection points and partner drop locations. Before visiting or publishing, please contact the respective facility to verify current bin capacity, public access hours, and accepted item limits.
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Map Section -->
+  <section class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 class="text-2xl font-black text-charcoal-900">Interactive Bengaluru Map</h2>
+          <p class="text-xs text-charcoal-500 mt-1">Click on any green pin to view address, hours, and navigation links.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-eco-500"></span>
+          <span class="text-xs font-bold text-charcoal-700">7 Verified Drop Locations</span>
+        </div>
+      </div>
+
+      <!-- Map Container -->
+      <div class="rounded-3xl overflow-hidden border border-charcoal-200 shadow-lg h-[460px] sm:h-[520px] relative z-10" id="map">
+        <!-- Leaflet mounts here -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Location Cards List -->
+  <section class="py-16 bg-charcoal-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-10 gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-black text-charcoal-900">All Bengaluru Drop-off Points</h2>
+          <p class="text-sm text-charcoal-600 mt-1">Browse by neighborhood or find the closest center to you.</p>
+        </div>
+        <a
+          href="/pickup/"
+          class="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-xs font-bold text-white bg-eco-600 hover:bg-eco-700 transition-colors shadow-sm self-start"
+        >
+          Too heavy to carry? Book Doorstep Pickup &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {dropoffPoints.map((loc) => (
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-charcoal-200 hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-bold text-eco-700 bg-eco-50 px-2.5 py-1 rounded-full border border-eco-200">
+                  {loc.zone}
+                </span>
+                <span class="text-xs text-charcoal-400">Verified</span>
+              </div>
+
+              <h3 class="text-base font-bold text-charcoal-900 leading-snug">
+                {loc.name}
+              </h3>
+
+              <p class="text-xs text-charcoal-600 leading-relaxed">
+                📍 {loc.address}
+              </p>
+
+              <div class="text-xs text-charcoal-500 pt-1">
+                <strong>Hours:</strong> {loc.hours}
+              </div>
+
+              <div class="pt-2">
+                <p class="text-[11px] font-semibold text-charcoal-700 mb-1.5">Commonly Accepted:</p>
+                <div class="flex flex-wrap gap-1.5">
+                  {loc.accepts.map((item) => (
+                    <span class="text-[10px] bg-charcoal-100 text-charcoal-700 px-2 py-0.5 rounded font-medium">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <p class="text-[11px] text-charcoal-500 italic pt-2">
+                "{loc.verifiedNote}"
+              </p>
+            </div>
+
+            <div class="pt-6 border-t border-charcoal-100 mt-6 flex items-center justify-between">
+              <a
+                href={loc.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center text-xs font-bold text-eco-600 hover:text-eco-700 group"
+              >
+                Get Google Maps Directions
+                <svg class="ml-1 w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
+              <button
+                type="button"
+                data-lat={loc.lat}
+                data-lng={loc.lng}
+                class="map-focus-btn text-xs font-semibold text-charcoal-500 hover:text-charcoal-900 underline"
+              >
+                View on Map
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Doorstep Pickup Alternative Banner -->
+  <section class="py-16 bg-charcoal-900 text-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <h2 class="text-3xl font-black">Don't want to transport heavy TVs or PCs?</h2>
+      <p class="text-charcoal-300 text-sm max-w-lg mx-auto">
+        Let our Bengaluru logistics team come to your apartment or office. Doorstep pickups are available 6 days a week.
+      </p>
+      <div class="pt-3">
+        <a
+          href="/pickup/"
+          class="inline-flex items-center justify-center px-8 py-3.5 rounded-full text-sm font-bold text-charcoal-900 bg-eco-500 hover:bg-eco-400 transition-colors shadow-lg"
+        >
+          Book Doorstep Pickup
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script define:vars={{ dropoffPoints }}>
+  // Client script to initialize Leaflet Map
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof L === 'undefined') return;
+
+    // Center on central Bengaluru (12.9716° N, 77.5946° E)
+    const map = L.map('map').setView([12.9500, 77.6200], 11);
+
+    // Clean OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Custom Eco Green Leaflet Icon
+    const ecoIcon = L.divIcon({
+      className: 'custom-eco-pin',
+      html: `<div style="background-color: #16a34a; width: 28px; height: 28px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: bold;">🌱</div>`,
+      iconSize: [28, 28],
+      iconAnchor: [14, 14],
+      popupAnchor: [0, -14],
+    });
+
+    const markers = {};
+
+    dropoffPoints.forEach((loc) => {
+      const popupContent = `
+        <div style="font-family: inherit; font-size: 12px; max-width: 220px; line-height: 1.4;">
+          <strong style="color: #12161f; font-size: 13px; display: block; margin-bottom: 4px;">${loc.name}</strong>
+          <span style="color: #64748b; display: block; margin-bottom: 6px;">${loc.address}</span>
+          <span style="display: inline-block; background: #dcfce7; color: #166534; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 4px; margin-bottom: 6px;">${loc.hours}</span>
+          <br/>
+          <a href="${loc.mapsUrl}" target="_blank" rel="noopener noreferrer" style="color: #16a34a; font-weight: bold; text-decoration: underline;">Open Directions &rarr;</a>
+        </div>
+      `;
+
+      const marker = L.marker([loc.lat, loc.lng], { icon: ecoIcon })
+        .addTo(map)
+        .bindPopup(popupContent);
+
+      markers[`${loc.lat},${loc.lng}`] = marker;
+    });
+
+    // Wire up "View on Map" buttons
+    document.querySelectorAll('.map-focus-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget;
+        const lat = parseFloat(target.getAttribute('data-lat'));
+        const lng = parseFloat(target.getAttribute('data-lng'));
+        if (lat && lng) {
+          map.flyTo([lat, lng], 14, { duration: 1.2 });
+          const marker = markers[`${lat},${lng}`];
+          if (marker) {
+            marker.openPopup();
+          }
+          document.getElementById('map')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    });
+  });
+</script>

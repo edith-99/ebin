@@ -1,0 +1,296 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Schedule a Pickup"
+  description="Book a free e-waste doorstep collection across Bengaluru. Safe handling, certified recycling, and instant receipt."
+>
+  <div class="bg-charcoal-50 py-16 sm:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-eco-600 bg-eco-100 px-3 py-1 rounded-full">
+          Bengaluru Doorstep Service
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black text-charcoal-900 tracking-tight mt-3">
+          Schedule an E-Waste Pickup
+        </h1>
+        <p class="text-charcoal-600 text-base mt-3">
+          Tell us what items you have and when to come. Our Bengaluru dispatch team will call or message to confirm your exact collection slot.
+        </p>
+      </div>
+
+      <!-- Main Form Container -->
+      <div class="bg-white rounded-3xl shadow-xl border border-charcoal-100 overflow-hidden">
+        
+        <!-- Top Guarantee Banner -->
+        <div class="bg-charcoal-900 text-white px-6 py-4 flex flex-wrap items-center justify-between text-xs sm:text-sm gap-2">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-eco-500"></span>
+            <span class="font-bold">Bengaluru Urban Only</span>
+          </div>
+          <span class="text-charcoal-400">Zero-Landfill Guarantee • KSPCB Partner</span>
+        </div>
+
+        <form
+          name="pickup"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          action="/pickup/success/"
+          class="p-8 sm:p-12 space-y-8"
+        >
+          <!-- Netlify hidden inputs -->
+          <input type="hidden" name="form-name" value="pickup" />
+          
+          <!-- Honeypot Field for Spam Protection -->
+          <p class="hidden">
+            <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+
+          <!-- 1. Contact Information -->
+          <div>
+            <h2 class="text-lg font-black text-charcoal-900 border-b border-charcoal-100 pb-3 mb-6 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-eco-600 text-white text-xs flex items-center justify-center font-bold">1</span>
+              Your Contact Details
+            </h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                  Full Name <span class="text-eco-600">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="e.g. Ramesh Kumar"
+                  class="w-full px-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm"
+                />
+              </div>
+
+              <div>
+                <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                  Phone Number (WhatsApp preferred) <span class="text-eco-600">*</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-sm font-semibold text-charcoal-400">
+                    +91
+                  </span>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    pattern="[0-9]{10}"
+                    placeholder="9876543210"
+                    class="w-full pl-14 pr-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm"
+                  />
+                </div>
+                <p class="text-[11px] text-charcoal-400 mt-1.5">Used solely for arrival coordination. No spam ever.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Address in Bengaluru -->
+          <div>
+            <h2 class="text-lg font-black text-charcoal-900 border-b border-charcoal-100 pb-3 mb-6 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-eco-600 text-white text-xs flex items-center justify-center font-bold">2</span>
+              Bengaluru Pickup Address
+            </h2>
+
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="sm:col-span-2">
+                  <label for="locality" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                    Neighborhood / Locality <span class="text-eco-600">*</span>
+                  </label>
+                  <select
+                    id="locality"
+                    name="locality"
+                    required
+                    class="w-full px-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm bg-white"
+                  >
+                    <option value="" disabled selected>Select your Bengaluru area</option>
+                    <option value="Koramangala">Koramangala</option>
+                    <option value="Indiranagar">Indiranagar</option>
+                    <option value="HSR Layout">HSR Layout</option>
+                    <option value="Whitefield">Whitefield</option>
+                    <option value="Electronic City">Electronic City</option>
+                    <option value="BTM Layout">BTM Layout</option>
+                    <option value="Jayanagar">Jayanagar</option>
+                    <option value="JP Nagar">JP Nagar</option>
+                    <option value="Malleshwaram">Malleshwaram</option>
+                    <option value="Rajajinagar">Rajajinagar</option>
+                    <option value="Bellandur / Sarjapur">Bellandur / Sarjapur</option>
+                    <option value="Marathahalli">Marathahalli</option>
+                    <option value="Hebbal / Sahakar Nagar">Hebbal / Sahakar Nagar</option>
+                    <option value="Banashankari">Banashankari</option>
+                    <option value="Other Bengaluru Location">Other Bengaluru Location (BBMP Area)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="pincode" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                    PIN Code <span class="text-eco-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="pincode"
+                    name="pincode"
+                    required
+                    pattern="560[0-9]{3}"
+                    placeholder="560034"
+                    class="w-full px-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="address" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                  Building Name, Flat/House No., Street Address <span class="text-eco-600">*</span>
+                </label>
+                <textarea
+                  id="address"
+                  name="address"
+                  rows="3"
+                  required
+                  placeholder="e.g. Flat 304, Green Palms Apartment, 4th Cross, 80 Feet Road..."
+                  class="w-full px-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Items to Recycle -->
+          <div>
+            <h2 class="text-lg font-black text-charcoal-900 border-b border-charcoal-100 pb-3 mb-6 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-eco-600 text-white text-xs flex items-center justify-center font-bold">3</span>
+              Electronics to Recycle
+            </h2>
+
+            <div class="space-y-4">
+              <p class="text-xs text-charcoal-600 font-semibold">Select all categories you wish to hand over:</p>
+              
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-charcoal-200 hover:border-eco-500 cursor-pointer transition-colors bg-charcoal-50/50">
+                  <input type="checkbox" name="items" value="Smartphones/Tablets" class="rounded text-eco-600 focus:ring-eco-500 h-4 w-4" />
+                  <span class="font-medium text-charcoal-800">Phones / Tablets</span>
+                </label>
+
+                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-charcoal-200 hover:border-eco-500 cursor-pointer transition-colors bg-charcoal-50/50">
+                  <input type="checkbox" name="items" value="Laptops" class="rounded text-eco-600 focus:ring-eco-500 h-4 w-4" />
+                  <span class="font-medium text-charcoal-800">Laptops</span>
+                </label>
+
+                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-charcoal-200 hover:border-eco-500 cursor-pointer transition-colors bg-charcoal-50/50">
+                  <input type="checkbox" name="items" value="Desktop/Monitors" class="rounded text-eco-600 focus:ring-eco-500 h-4 w-4" />
+                  <span class="font-medium text-charcoal-800">Desktop / Monitors</span>
+                </label>
+
+                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-charcoal-200 hover:border-eco-500 cursor-pointer transition-colors bg-charcoal-50/50">
+                  <input type="checkbox" name="items" value="TVs" class="rounded text-eco-600 focus:ring-eco-500 h-4 w-4" />
+                  <span class="font-medium text-charcoal-800">TVs / Screens</span>
+                </label>
+
+                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-charcoal-200 hover:border-eco-500 cursor-pointer transition-colors bg-charcoal-50/50">
+                  <input type="checkbox" name="items" value="Batteries/UPS" class="rounded text-eco-600 focus:ring-eco-500 h-4 w-4" />
+                  <span class="font-medium text-charcoal-800">Batteries / UPS</span>
+                </label>
+
+                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-charcoal-200 hover:border-eco-500 cursor-pointer transition-colors bg-charcoal-50/50">
+                  <input type="checkbox" name="items" value="Printers/Peripherals" class="rounded text-eco-600 focus:ring-eco-500 h-4 w-4" />
+                  <span class="font-medium text-charcoal-800">Printers & Mice</span>
+                </label>
+
+                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-charcoal-200 hover:border-eco-500 cursor-pointer transition-colors bg-charcoal-50/50">
+                  <input type="checkbox" name="items" value="Cables/Adapters" class="rounded text-eco-600 focus:ring-eco-500 h-4 w-4" />
+                  <span class="font-medium text-charcoal-800">Cables & Chargers</span>
+                </label>
+
+                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-charcoal-200 hover:border-eco-500 cursor-pointer transition-colors bg-charcoal-50/50">
+                  <input type="checkbox" name="items" value="Home Appliances" class="rounded text-eco-600 focus:ring-eco-500 h-4 w-4" />
+                  <span class="font-medium text-charcoal-800">Small Appliances</span>
+                </label>
+              </div>
+
+              <div class="pt-2">
+                <label for="item_details" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                  Detailed Item List & Estimated Count <span class="text-eco-600">*</span>
+                </label>
+                <textarea
+                  id="item_details"
+                  name="item_details"
+                  rows="3"
+                  required
+                  placeholder="e.g. 1 Dell laptop (broken screen), 2 old Redmi phones, 5 assorted phone chargers, 1 dead UPS battery."
+                  class="w-full px-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Preferred Timing -->
+          <div>
+            <h2 class="text-lg font-black text-charcoal-900 border-b border-charcoal-100 pb-3 mb-6 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-eco-600 text-white text-xs flex items-center justify-center font-bold">4</span>
+              Preferred Pickup Window
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="preferred_date" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                  Preferred Date <span class="text-eco-600">*</span>
+                </label>
+                <input
+                  type="date"
+                  id="preferred_date"
+                  name="preferred_date"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm bg-white"
+                />
+              </div>
+
+              <div>
+                <label for="preferred_slot" class="block text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
+                  Time Window <span class="text-eco-600">*</span>
+                </label>
+                <select
+                  id="preferred_slot"
+                  name="preferred_slot"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-charcoal-200 focus:outline-none focus:ring-2 focus:ring-eco-500 focus:border-transparent text-sm bg-white"
+                >
+                  <option value="" disabled selected>Choose a convenient slot</option>
+                  <option value="Morning (9:00 AM – 12:00 PM)">Morning (9:00 AM – 12:00 PM)</option>
+                  <option value="Afternoon (12:00 PM – 3:30 PM)">Afternoon (12:00 PM – 3:30 PM)</option>
+                  <option value="Evening (3:30 PM – 6:30 PM)">Evening (3:30 PM – 6:30 PM)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button & Trust Notice -->
+          <div class="pt-4 border-t border-charcoal-100 space-y-4">
+            <button
+              type="submit"
+              class="w-full py-4 px-6 rounded-full text-base font-black text-white bg-eco-600 hover:bg-eco-700 transition-all duration-200 transform hover:scale-[1.01] shadow-lg shadow-eco-600/20"
+            >
+              Confirm & Request Doorstep Pickup
+            </button>
+            
+            <p class="text-center text-xs text-charcoal-500">
+              🔒 By requesting a pickup, you agree to our <a href="/privacy/" class="underline hover:text-eco-600">Privacy Policy</a>. We never sell your phone number or data.
+            </p>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</Layout>

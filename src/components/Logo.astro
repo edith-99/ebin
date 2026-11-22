@@ -1,0 +1,24 @@
+---
+interface Props {
+  className?: string;
+  isDark?: boolean;
+}
+
+const { className = "h-8", isDark = false } = Astro.props;
+---
+
+<a href="/" class={`inline-flex items-center gap-2.5 group transition-opacity hover:opacity-90 ${className}`} aria-label="ebin home">
+  <svg class="h-8 w-8 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="48" height="48" rx="12" fill={isDark ? "#1e293b" : "#12161f"} />
+    <!-- Eco recycling loop arrows with circuit aesthetic -->
+    <path d="M24 10C16.268 10 10 16.268 10 24C10 27.866 11.567 31.366 14.1 33.9L17.5 30.5C15.9 28.9 15 26.6 15 24C15 19.03 19.03 15 24 15V19L30 13L24 7V10Z" fill="#16a34a"/>
+    <path d="M24 38C31.732 38 38 31.732 38 24C38 20.134 36.433 16.634 33.9 14.1L30.5 17.5C32.1 19.1 33 21.4 33 24C33 28.97 28.97 33 24 33V29L18 35L24 41V38Z" fill="#22c55e"/>
+    <circle cx="24" cy="24" r="3.5" fill="#f0fdf4"/>
+  </svg>
+  <span class="flex items-baseline">
+    <span class={`text-2xl font-black tracking-tight ${isDark ? "text-white" : "text-charcoal-900"}`}>
+      e<span class="text-eco-600">bin</span>
+    </span>
+    <span class="w-1.5 h-1.5 rounded-full bg-eco-500 ml-0.5"></span>
+  </span>
+</a>

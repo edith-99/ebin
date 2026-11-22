@@ -1,0 +1,137 @@
+---
+import Logo from './Logo.astro';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+
+const navLinks = [
+  { name: 'How It Works', href: '/how-it-works/' },
+  { name: 'Price Guide', href: '/price-guide/' },
+  { name: 'Drop-off Points', href: '/locations/' },
+  { name: 'About', href: '/about/' },
+  { name: 'Contact', href: '/contact/' },
+];
+
+const isPickup = currentPath === '/pickup/' || currentPath.startsWith('/pickup');
+---
+
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-charcoal-100 transition-all">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Brand Logo -->
+      <div class="flex-shrink-0">
+        <Logo />
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+        {navLinks.map((link) => {
+          const isActive = currentPath === link.href;
+          return (
+            <a
+              href={link.href}
+              class={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                isActive
+                  ? 'text-eco-700 bg-eco-50 font-bold'
+                  : 'text-charcoal-700 hover:text-eco-600 hover:bg-charcoal-50'
+              }`}
+            >
+              {link.name}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- CTA Button & Mobile Menu Trigger -->
+      <div class="flex items-center space-x-4">
+        <a
+          href="/pickup/"
+          class={`inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-bold tracking-tight shadow-sm transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 ${
+            isPickup
+              ? 'bg-charcoal-900 text-white hover:bg-charcoal-800 ring-2 ring-eco-500'
+              : 'bg-eco-600 text-white hover:bg-eco-700 hover:shadow-md'
+          }`}
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          Schedule Pickup
+        </a>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          class="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-charcoal-600 hover:text-charcoal-900 hover:bg-charcoal-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-eco-500"
+          aria-expanded="false"
+          aria-label="Open main menu"
+        >
+          <svg id="menu-open-icon" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menu-close-icon" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden border-b border-charcoal-200 bg-white">
+    <div class="px-4 pt-3 pb-6 space-y-2">
+      {navLinks.map((link) => {
+        const isActive = currentPath === link.href;
+        return (
+          <a
+            href={link.href}
+            class={`block px-3 py-2.5 rounded-lg text-base font-semibold ${
+              isActive
+                ? 'bg-eco-50 text-eco-700 font-bold'
+                : 'text-charcoal-700 hover:bg-charcoal-50 hover:text-eco-600'
+            }`}
+          >
+            {link.name}
+          </a>
+        );
+      })}
+      <div class="pt-2">
+        <a
+          href="/pickup/"
+          class="w-full flex items-center justify-center px-4 py-3 rounded-xl text-base font-bold text-white bg-eco-600 hover:bg-eco-700 shadow"
+        >
+          Schedule a Pickup
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('menu-open-icon');
+  const closeIcon = document.getElementById('menu-close-icon');
+
+  if (btn && menu && openIcon && closeIcon) {
+    btn.addEventListener('click', () => {
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        openIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        menu.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>

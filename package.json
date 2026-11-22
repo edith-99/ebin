@@ -1,0 +1,18 @@
+{
+  "name": "ebin",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node run-astro.js dev --host",
+    "start": "node run-astro.js dev --host",
+    "build": "node run-astro.js build",
+    "preview": "node run-astro.js preview --host",
+    "astro": "node run-astro.js"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.5",
+    "astro": "^4.16.18",
+    "tailwindcss": "^3.4.17"
+  }
+}
